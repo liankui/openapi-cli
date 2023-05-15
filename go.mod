@@ -2,7 +2,10 @@ module github.com/liankui/openapi-converter
 
 go 1.20
 
-require github.com/daveshanley/vacuum v0.1.1
+require (
+	github.com/daveshanley/vacuum v0.1.1
+	github.com/urfave/cli/v2 v2.25.3
+)
 
 require (
 	atomicgo.dev/cursor v0.1.1 // indirect
@@ -21,7 +24,6 @@ require (
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 // indirect
-	github.com/urfave/cli/v2 v2.25.3 // indirect
 	github.com/vmware-labs/yaml-jsonpath v0.3.2 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
