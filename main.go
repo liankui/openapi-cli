@@ -7,7 +7,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/liankui/openapi-converter/action"
+	"github.com/liankui/openapi-cli/action"
 )
 
 // start
@@ -16,7 +16,7 @@ func main() {
 	app := cli.App{
 		Name:                   "openapi-cli",
 		Usage:                  "openapi command line is a small utility for parsing and validating openapi(swagger) document",
-		UsageText:              "openapi-cli command [command options] [arguments...]",
+		UsageText:              "openapi-cli [command] [command options] [arguments...]",
 		EnableBashCompletion:   true,
 		UseShortOptionHandling: true,
 		Commands: []*cli.Command{
@@ -35,6 +35,19 @@ func main() {
 						Aliases: []string{"d"},
 						Usage:   "the target dir to start, default is the current work dir",
 					}},
+				Action: nil,
+			},
+			{
+				Name:    "to",
+				Aliases: []string{"t"},
+				Usage:   "Specifies output format",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "dir",
+						Aliases: []string{"d"},
+						Usage:   "the target dir to start, default is the current work dir",
+					}},
+				Action: nil,
 			},
 			{
 				Name:    "version",

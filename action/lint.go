@@ -1,10 +1,10 @@
 package action
 
 import (
-	"log"
 	"os"
 	"strings"
 
+	"github.com/chaos-io/chaos/core/logs"
 	"github.com/daveshanley/vacuum/model"
 	"github.com/daveshanley/vacuum/motor"
 	"github.com/daveshanley/vacuum/rulesets"
@@ -28,7 +28,7 @@ func (s *Lint) Action() func(c *cli.Context) error {
 
 		spec, err := os.ReadFile(c.Args().First())
 		if err != nil {
-			log.Printf("failed to read file, path=%v, error=%v", os.Args[1], err)
+			logs.Errorw("failed to read file", "error", err, "path", os.Args[1])
 			return err
 		}
 
@@ -47,7 +47,7 @@ func (s *Lint) Action() func(c *cli.Context) error {
 						continue
 					}
 
-					log.Printf("violation, path=%v, method=%v, start=%v, end=%v, rule=%v\n", path, method, _result.StartNode.Line, _result.EndNode.Line, _result.Rule)
+					logs.Infow("violation", "path", path, "method", method, "start", _result.StartNode.Line, "end", _result.EndNode.Line, "rule", _result.Rule)
 					break
 				}
 
