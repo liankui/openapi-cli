@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
-
+	
+	"github.com/chaos-io/chaos/core/logs"
 	"github.com/urfave/cli/v2"
-
-	"github.com/liankui/openapi-cli/action"
+	
+	"github.com/liankui/openapi-cli/pkg"
 )
 
 // start
@@ -21,49 +21,43 @@ func main() {
 		UseShortOptionHandling: true,
 		Commands: []*cli.Command{
 			{
-				Name:   "lint",
-				Usage:  "lint openapi/swagger document",
-				Action: action.NewLint().Action(),
+				Name:    "lint",
+				Aliases: []string{"l"},
+				Usage:   "lint swagger/openapi document",
+				Action:  pkg.NewLint().Action(),
 			},
 			{
-				Name:    "from",
-				Aliases: []string{"f"},
-				Usage:   "Specifies format to convert",
+				Name:    "upgrade",
+				Aliases: []string{"u"},
+				Usage:   "upgrade openapi2 to openapi3",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:    "dir",
 						Aliases: []string{"d"},
 						Usage:   "the target dir to start, default is the current work dir",
 					}},
-				Action: nil,
-			},
-			{
-				Name:    "to",
-				Aliases: []string{"t"},
-				Usage:   "Specifies output format",
-				Flags: []cli.Flag{
-					&cli.StringFlag{
-						Name:    "dir",
-						Aliases: []string{"d"},
-						Usage:   "the target dir to start, default is the current work dir",
-					}},
-				Action: nil,
+				Action: pkg.NewUpgrade().Action(),
 			},
 			{
 				Name:    "version",
 				Aliases: []string{"v"},
 				Usage:   "Show version",
 				Action: func(ctx *cli.Context) error {
-					fmt.Println("v0.1.0")
+					v, err := os.ReadFile("../version")
+					if err != nil {
+						logs.Warnw("failed to get version", "error", err)
+						return err
+					}
+					fmt.Print(string(v))
 					return nil
 				},
 			},
 		},
 	}
-
+	
 	err := app.Run(os.Args)
 	if err != nil {
-		log.Printf("err=%v\n", err)
+		logs.Warnw("execute command failed", "action", app.Action, "error", err)
 		return
 	}
 }
