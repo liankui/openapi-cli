@@ -33,25 +33,22 @@ func NewLint() *Lint {
 	return &Lint{config: &LintConfig{}}
 }
 
-func (l *Lint) Action() func(c *cli.Context) error {
-	return func(c *cli.Context) error {
-		
-		spec, err := os.ReadFile(c.Args().First())
-		if err != nil {
-			logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
-			return nil
-		}
-		
-		lintResult := OpenapiLint(c.Context, spec)
-		
-		for _, o := range lintResult.Operations {
-			if !o.Valid {
-				logs.Infow("violation", "result", o)
-			}
-		}
-		
+func (l *Lint) Action(c *cli.Context) error {
+	spec, err := os.ReadFile(c.Args().First())
+	if err != nil {
+		logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
 		return nil
 	}
+	
+	lintResult := OpenapiLint(c.Context, spec)
+	
+	for _, o := range lintResult.Operations {
+		if !o.Valid {
+			logs.Infow("violation", "result", o)
+		}
+	}
+	
+	return nil
 }
 
 func OpenapiLint(ctx context.Context, spec []byte) *LintResult {

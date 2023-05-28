@@ -1,0 +1,73 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "用于实时查看、测试API",
+    "version": "2.0",
+    "title": "API实时接口文档",
+    "contact": {
+      "name": "qqq"
+    }
+  },
+  "host": "extract_server:8142",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "web-mvc-links-handler",
+      "description": "Web Mvc Links Handler"
+    }
+  ],
+  "paths": {
+    "/actuator": {
+      "get": {
+        "tags": [
+          "web-mvc-links-handler"
+        ],
+        "summary": "links",
+        "operationId": "linksUsingGET",
+        "produces": [
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "$ref": "#/definitions/Link"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Link": {
+      "type": "object",
+      "properties": {
+        "gender": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Link"
+    }
+  }
+}
+

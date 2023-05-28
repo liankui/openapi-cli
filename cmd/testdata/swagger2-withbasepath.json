@@ -1,0 +1,234 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "VulnerableApp",
+    "version": "1.0.0"
+  },
+  "host": "127.0.0.1:9090",
+  "basePath": "/VulnerableApp",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/BlindSQLInjectionVulnerability/LEVEL_1": {
+      "get": {
+        "produces": [
+          "application/octet-stream",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "tags": [
+          "BlindSQLInjectionVulnerability"
+        ],
+        "summary": "BlindSQLInjection Vulnerability"
+      }
+    },
+    "/BlindSQLInjectionVulnerability/LEVEL_2": {
+      "get": {
+        "produces": [
+          "application/octet-stream",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "tags": [
+          "BlindSQLInjectionVulnerability"
+        ],
+        "summary": "BlindSQLInjection Vulnerability"
+      }
+    },
+    "/BlindSQLInjectionVulnerability/LEVEL_3": {
+      "get": {
+        "produces": [
+          "application/octet-stream",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "tags": [
+          "BlindSQLInjectionVulnerability"
+        ],
+        "summary": "BlindSQLInjection Vulnerability"
+      }
+    },
+    "/XXEVulnerability/LEVEL_3": {
+      "post": {
+        "consumes": [],
+        "produces": [
+          "application/octet-stream",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <!DOCTYPE note[<!ENTITY xxe SYSTEM \"http://127.0.0.1:9090/VulnerableApp/images/cars/Audi.jpg\">]><Book>  <name>三体</name>  <author>刘慈欣</author>  <isbn>9787229124410</isbn>  <publisher>重庆出版社出版</publisher>  <others>三体 《三体》为2017年重庆出版社出版书籍。基本信息 开 本：16开 纸 张：胶版纸 包 装：精装 是否套装：是 国际标准书号ISBN：9787229124410</others></Book>",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "XXEVulnerability"
+        ],
+        "summary": "XML External Entity attack Vulnerability"
+      }
+    },
+    "/XXEVulnerability/LEVEL_4": {
+      "post": {
+        "consumes": [],
+        "produces": [
+          "application/octet-stream",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <!DOCTYPE note[<!ENTITY xxe SYSTEM \"http://127.0.0.1:9090/VulnerableApp/images/cars/Audi.jpg\">]><Book>  <name>三体</name>  <author>刘慈欣</author>  <isbn>9787229124410</isbn>  <publisher>重庆出版社出版</publisher>  <others>三体 《三体》为2017年重庆出版社出版书籍。基本信息 开 本：16开 纸 张：胶版纸 包 装：精装 是否套装：是 国际标准书号ISBN：9787229124410</others></Book>\u0000",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "XXEVulnerability"
+        ],
+        "summary": "XML External Entity attack Vulnerability"
+      }
+    }
+  },
+  "definitions": {
+    "Book": {
+      "properties": {
+        "author": {
+          "example": "刘慈欣",
+          "type": "string"
+        },
+        "isbn": {
+          "example": "9787229124410",
+          "type": "string"
+        },
+        "name": {
+          "example": "三体",
+          "type": "string"
+        },
+        "others": {
+          "example": "三体 《三体》为2017年重庆出版社出版书籍。基本信息开本：16开 纸 张：胶版纸 包 装：精装 是否套装：是 国际标准书号ISBN：9787229124410",
+          "type": "string"
+        },
+        "publisher": {
+          "example": "重庆出版社出版",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    },
+    "keyAuth": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "x-components": {}
+}
