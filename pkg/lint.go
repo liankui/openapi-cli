@@ -5,7 +5,7 @@ import (
 	"os"
 	"sort"
 	"strings"
-	
+
 	"github.com/chaos-io/chaos/core/logs"
 	"github.com/daveshanley/vacuum/model"
 	"github.com/daveshanley/vacuum/motor"
@@ -39,15 +39,15 @@ func (l *Lint) Action(c *cli.Context) error {
 		logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
 		return nil
 	}
-	
+
 	lintResult := OpenapiLint(c.Context, spec)
-	
+
 	for _, o := range lintResult.Operations {
 		if !o.Valid {
 			logs.Infow("violation", "result", o)
 		}
 	}
-	
+
 	return nil
 }
 
@@ -57,18 +57,18 @@ func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
 		Spec:            spec,
 		CustomFunctions: map[string]model.RuleFunction{},
 	})
-	
+
 	if result.Index == nil {
 		return &LintResult{Valid: false}
 	}
-	
+
 	operations := result.Index.GetAllPaths()
-	
+
 	lintResult := &LintResult{
 		Operations: make([]*LintOperationResult, 0, len(operations)),
 		Valid:      true,
 	}
-	
+
 	for path, operation := range operations {
 		for method := range operation {
 			operationResult := &LintOperationResult{
@@ -76,13 +76,13 @@ func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
 				Method: method,
 				Valid:  true,
 			}
-			
+
 			operationPath := strings.Join([]string{"$.paths", path, method, "parameters"}, ".")
 			for _, _result := range result.Results {
 				if _result.Path != operationPath {
 					continue
 				}
-				
+
 				operationResult.Valid = false
 				operationResult.Description = _result.Rule.Description
 				operationResult.HowToFix = _result.Rule.HowToFix
@@ -92,16 +92,16 @@ func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
 				if _result.EndNode != nil {
 					operationResult.EndLine = int32(_result.EndNode.Line)
 				}
-				
+
 				lintResult.Valid = false
 				break
 			}
-			
+
 			lintResult.Operations = append(lintResult.Operations, operationResult)
 		}
 	}
-	
+
 	sort.Sort(LintOperationResults(lintResult.Operations))
-	
+
 	return lintResult
 }

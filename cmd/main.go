@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
-	
+
 	"github.com/chaos-io/chaos/core/logs"
 	"github.com/urfave/cli/v2"
-	
+
 	"github.com/liankui/openapi-cli/pkg"
 )
 
@@ -29,7 +29,7 @@ func main() {
 			{
 				Name:    "upgrade",
 				Aliases: []string{"u"},
-				Usage:   "upgrade openapi2 to openapi3",
+				Usage:   "upgrade swagger2 to openapi3",
 				Action:  pkg.NewUpgrade().Action,
 			},
 			{
@@ -48,7 +48,7 @@ func main() {
 			},
 		},
 	}
-	
+
 	err := app.Run(os.Args)
 	if err != nil {
 		logs.Error(err)
