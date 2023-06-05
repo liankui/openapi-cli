@@ -35,12 +35,7 @@ func main() {
 				Aliases: []string{"v"},
 				Usage:   "Show version",
 				Action: func(ctx *cli.Context) error {
-					v, err := os.ReadFile("../../version")
-					if err != nil {
-						logs.Warnw("failed to get version", "error", err)
-						return err
-					}
-					fmt.Print(string(v))
+					fmt.Println("v0.2.1")
 					return nil
 				},
 			},

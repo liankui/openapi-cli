@@ -97,7 +97,7 @@ func (o2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 			return nil, err
 		}
 
-		logs.Infow("api upgrade successfully", "upgraded version", v3.OpenAPI, "duration", time.Since(start).String())
+		logs.Infow("api upgrade successfully", "file", newfp, "version", v3.OpenAPI, "duration", time.Since(start).String())
 
 		return v3, nil
 	}
