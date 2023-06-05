@@ -4,7 +4,7 @@ pwd=$(
   cd "$(dirname "$0")"
   pwd
 )
-version=$(cat "$(dirname "$pwd")"/version)
+version=$(cat "$(dirname "$pwd")/.."/version)
 GOOSs=(darwin linux windows)
 GOARCHs=(amd64)
 

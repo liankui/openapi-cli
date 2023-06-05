@@ -10,8 +10,6 @@ import (
 	"github.com/liankui/openapi-cli/pkg"
 )
 
-// start
-// stop
 func main() {
 	app := cli.App{
 		Name:                   "openapi-cli",
@@ -37,7 +35,7 @@ func main() {
 				Aliases: []string{"v"},
 				Usage:   "Show version",
 				Action: func(ctx *cli.Context) error {
-					v, err := os.ReadFile("../version")
+					v, err := os.ReadFile("../../version")
 					if err != nil {
 						logs.Warnw("failed to get version", "error", err)
 						return err
