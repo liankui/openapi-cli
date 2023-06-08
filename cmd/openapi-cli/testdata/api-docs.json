@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a API doc for Parameter Test.",
+        "version": "1.0.0",
+        "title": "Parameter Test API"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "basic-error-controller",
+            "description": "Basic Error Controller"
+        },
+        {
+            "name": "para-controller",
+            "description": "Para Controller"
+        }
+    ],
+    "paths": {
+        "/list": {
+            "get": {
+                "tags": [
+                    "para-controller"
+                ],
+                "summary": "分页查询列表",
+                "operationId": "listBrandUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "appId",
+                        "in": "query",
+                        "description": "appId",
+                        "required": false,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "appKey",
+                        "in": "query",
+                        "description": "appKey",
+                        "required": false,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "orderby",
+                        "in": "query",
+                        "description": "orderby",
+                        "required": true,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "页码",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "每页数量",
+                        "required": false,
+                        "type": "integer",
+                        "default": 3,
+                        "format": "int32",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "prop",
+                        "in": "query",
+                        "description": "prop",
+                        "required": true,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    }
+}

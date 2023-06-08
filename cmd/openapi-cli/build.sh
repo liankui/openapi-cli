@@ -1,9 +1,5 @@
 #!/bin/bash
-pwd=$(
-  cd "$(dirname "$0")"
-  pwd
-)
-version=$(cat "$(dirname "$pwd")/.."/version)
+version=$(cat version)
 GOOSs=(darwin linux windows)
 GOARCHs=(amd64)
 

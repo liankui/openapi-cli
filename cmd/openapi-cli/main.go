@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 
@@ -9,6 +10,9 @@ import (
 
 	"github.com/liankui/openapi-cli/pkg"
 )
+
+//go:embed version
+var version string
 
 func main() {
 	app := cli.App{
