@@ -48,6 +48,8 @@ func (l *Lint) Action(c *cli.Context) error {
 		}
 	}
 
+	logs.Infow("lint successfully", "file", c.Args().First())
+
 	return nil
 }
 

@@ -13,7 +13,6 @@ import (
 	"github.com/getkin/kin-openapi/openapi2conv"
 	"github.com/getkin/kin-openapi/openapi3"
 	jsoniter "github.com/json-iterator/go"
-	"gopkg.in/yaml.v3"
 )
 
 type Openapi2 struct {
@@ -24,11 +23,7 @@ type Openapi2 struct {
 
 func NewOpenapi2(filename string) *Openapi2 {
 	o2 := &Openapi2{Filename: filename}
-	if strings.HasSuffix(filename, ".yaml") || strings.HasSuffix(filename, ".yml") {
-		o2.marshaller, o2.unmarshaller = yaml.Marshal, yaml.Unmarshal
-	} else if strings.HasSuffix(filename, ".json") {
-		o2.marshaller, o2.unmarshaller = jsoniter.Marshal, jsoniter.Unmarshal
-	}
+	o2.marshaller, o2.unmarshaller, _ = GetMarshaller(filename)
 	return o2
 }
 
@@ -75,6 +70,12 @@ func (o2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 		return nil, err
 	}
 
+	toString, _ := jsoniter.MarshalToString(&v2)
+	_ = toString
+
+	marshal, _ := jsoniter.Marshal(&v2)
+	_ = marshal
+
 	o2.RemoveInvalidOperation(ctx, v2)
 
 	if OpenapiVersion == "2" || strings.HasPrefix(OpenapiVersion, "2.") {
@@ -98,6 +99,8 @@ func (o2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 		}
 
 		logs.Infow("api upgrade successfully", "file", newfp, "version", v3.OpenAPI, "duration", time.Since(start).String())
+
+		fmt.Printf("----%v\n", v3.Components)
 
 		return v3, nil
 	}

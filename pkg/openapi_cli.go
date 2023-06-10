@@ -3,7 +3,7 @@ package pkg
 import (
 	"fmt"
 	"strings"
-	
+
 	jsoniter "github.com/json-iterator/go"
 	"github.com/urfave/cli/v2"
 	"gopkg.in/yaml.v3"
@@ -19,7 +19,7 @@ func GetMarshaller(filename string) (marshaller func(v interface{}) ([]byte, err
 	} else if strings.HasSuffix(filename, ".json") {
 		marshaller, unmarshaller = jsoniter.Marshal, jsoniter.Unmarshal
 	} else {
-		err = fmt.Errorf("filename's type is invalid type, filename:%v", filename)
+		err = fmt.Errorf("filename's type is invalid type, file:%v", filename)
 	}
 	return
 }
