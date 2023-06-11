@@ -3,7 +3,7 @@ package pkg
 import (
 	"os"
 	"strings"
-	
+
 	"github.com/chaos-io/chaos/core/logs"
 	"github.com/getkin/kin-openapi/openapi2"
 	"github.com/getkin/kin-openapi/openapi3"
@@ -26,13 +26,13 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		logs.Warn(err)
 		return false
 	}
-	
+
 	_, unmarshaller, err := GetMarshaller(filename)
 	if err != nil {
-		logs.Warnw("failed to get marshaller", "error", err)
+		logs.Warnw("failed to get marshaler", "error", err)
 		return false
 	}
-	
+
 	var vd struct {
 		OpenAPI string `json:"openapi" yaml:"openapi"`
 		Swagger string `json:"swagger" yaml:"swagger"`
@@ -41,19 +41,19 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		logs.Warn(err)
 		return false
 	}
-	
+
 	switch {
 	case vd.OpenAPI == "3" || strings.HasPrefix(vd.OpenAPI, "3."):
 		OpenapiVersion = vd.OpenAPI
 		loader := openapi3.NewLoader()
 		loader.IsExternalRefsAllowed = ext
-		
+
 		doc, err := loader.LoadFromFile(filename)
 		if err != nil {
 			logs.Warnw("Loading error", "error", err)
 			return false
 		}
-		
+
 		var opts []openapi3.ValidationOption
 		// when false, disables schemas' default field validation
 		if !defaults {
@@ -67,12 +67,12 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		if !patterns {
 			opts = append(opts, openapi3.DisableSchemaPatternValidation())
 		}
-		
+
 		if err = doc.Validate(loader.Context, opts...); err != nil {
 			logs.Warnw("Validation error", "error", err)
 			return false
 		}
-	
+
 	case vd.Swagger == "2" || strings.HasPrefix(vd.Swagger, "2."):
 		OpenapiVersion = vd.Swagger
 		if defaults != defaultDefaults {
@@ -91,18 +91,18 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 			logs.Warn("Flag --patterns is only for OpenAPIv3")
 			return false
 		}
-		
+
 		var doc openapi2.T
 		if err := yaml.Unmarshal(data, &doc); err != nil {
 			logs.Warnw("Loading error", "error", err)
 			return false
 		}
-	
+
 	default:
 		logs.Warn("Missing or incorrect 'openapi' or 'swagger' field")
 		return false
 	}
-	
+
 	return true
 }
 
@@ -112,13 +112,13 @@ func Valid2(filename string) bool {
 		logs.Warn(err)
 		return false
 	}
-	
+
 	_, unmarshaller, err := GetMarshaller(filename)
 	if err != nil {
-		logs.Warnw("failed to get marshaller", "error", err)
+		logs.Warnw("failed to get marshaler", "error", err)
 		return false
 	}
-	
+
 	var vd struct {
 		OpenAPI string `json:"openapi" yaml:"openapi"`
 		Swagger string `json:"swagger" yaml:"swagger"`
@@ -127,18 +127,18 @@ func Valid2(filename string) bool {
 		logs.Warn(err)
 		return false
 	}
-	
+
 	switch {
 	case vd.OpenAPI == "3" || strings.HasPrefix(vd.OpenAPI, "3."):
 		OpenapiVersion = vd.OpenAPI
-	
+
 	case vd.Swagger == "2" || strings.HasPrefix(vd.Swagger, "2."):
 		OpenapiVersion = vd.Swagger
-	
+
 	default:
 		logs.Warn("Missing or incorrect 'openapi' or 'swagger' field")
 		return false
 	}
-	
+
 	return true
 }

@@ -34,6 +34,7 @@ func NewLint() *Lint {
 }
 
 func (l *Lint) Action(c *cli.Context) error {
+	logs.Infow("api lint", "file", c.Args().First())
 	spec, err := os.ReadFile(c.Args().First())
 	if err != nil {
 		logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
@@ -48,7 +49,7 @@ func (l *Lint) Action(c *cli.Context) error {
 		}
 	}
 
-	logs.Infow("lint successfully", "file", c.Args().First())
+	logs.Infow("api lint finished", "file", c.Args().First())
 
 	return nil
 }
