@@ -80,7 +80,7 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 		}
 
 		o3 := NormalizeV3(v3)
-		buffer, err := jsoniter.Marshal(&o3)
+		buffer, err := jsoniter.MarshalIndent(&o3, "", "  ")
 		if err != nil {
 			logs.Warnw("failed to marshal openapi3", "error", err)
 			return nil, err
