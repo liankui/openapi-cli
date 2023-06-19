@@ -86,7 +86,7 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 			return nil, err
 		}
 
-		newfp := strings.TrimSuffix(v2.Filename, ".json") + "-" + strconv.Itoa(time.Now().Nanosecond()) + ".json"
+		newfp := strings.TrimSuffix(v2.Filename, ".json") + "-" + strconv.FormatInt(time.Now().UnixMilli(), 10) + ".json"
 		err = os.WriteFile(newfp, buffer, os.ModePerm)
 		if err != nil {
 			logs.Warnw("failed to write upgraded api", "error", err)
