@@ -1,0 +1,6659 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Hello Java Sec API",
+		"version": "1.10",
+		"title": "Swagger2 RESTful API",
+		"contact": {
+			"name": "nul1",
+			"url": "https://www.github.com/j3ers3",
+			"email": "hahah@gmail.com"
+		}
+	},
+	"host": "localhost:8888",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "admin",
+			"description": "Admin"
+		},
+		{
+			"name": "bac",
+			"description": "BAC"
+		},
+		{
+			"name": "cors",
+			"description": "CORS"
+		},
+		{
+			"name": "deserialization",
+			"description": "Deserialization"
+		},
+		{
+			"name": "do-s",
+			"description": "Do S"
+		},
+		{
+			"name": "fastjson-vul",
+			"description": "Fastjson Vul"
+		},
+		{
+			"name": "groovy-vul",
+			"description": "Groovy Vul"
+		},
+		{
+			"name": "idor-1",
+			"description": "IDOR 1"
+		},
+		{
+			"name": "idor-2",
+			"description": "IDOR 2"
+		},
+		{
+			"name": "jackson-vul",
+			"description": "Jackson Vul"
+		},
+		{
+			"name": "jdbc",
+			"description": "JDBC"
+		},
+		{
+			"name": "jndi-inject",
+			"description": "JNDI Inject"
+		},
+		{
+			"name": "jwt",
+			"description": "JWT"
+		},
+		{
+			"name": "load-js-vul",
+			"description": "Load Js Vul"
+		},
+		{
+			"name": "log-4j-vul",
+			"description": "Log 4j Vul"
+		},
+		{
+			"name": "login",
+			"description": "Login"
+		},
+		{
+			"name": "my-batis",
+			"description": "My Batis"
+		},
+		{
+			"name": "process-builder-vul",
+			"description": "Process Builder Vul"
+		},
+		{
+			"name": "process-impl-vul",
+			"description": "Process Impl Vul"
+		},
+		{
+			"name": "redirect",
+			"description": "Redirect"
+		},
+		{
+			"name": "registry-vul",
+			"description": "Registry Vul"
+		},
+		{
+			"name": "runtime-vul",
+			"description": "Runtime Vul"
+		},
+		{
+			"name": "shiro-vul",
+			"description": "Shiro Vul"
+		},
+		{
+			"name": "sp-el",
+			"description": "Sp EL"
+		},
+		{
+			"name": "ssrf",
+			"description": "SSRF"
+		},
+		{
+			"name": "ssti",
+			"description": "SSTI"
+		},
+		{
+			"name": "traversal",
+			"description": "Traversal"
+		},
+		{
+			"name": "unauth",
+			"description": "Unauth"
+		},
+		{
+			"name": "upload",
+			"description": "Upload"
+		},
+		{
+			"name": "x-path-injection",
+			"description": "X Path Injection"
+		},
+		{
+			"name": "x-stream-vul",
+			"description": "X Stream Vul"
+		},
+		{
+			"name": "xff",
+			"description": "XFF"
+		},
+		{
+			"name": "xml-decoder-vul",
+			"description": "XML Decoder Vul"
+		},
+		{
+			"name": "xss",
+			"description": "XSS"
+		},
+		{
+			"name": "xxe",
+			"description": "XXE"
+		},
+		{
+			"name": "yaml-vul",
+			"description": "Yaml Vul"
+		}
+	],
+	"paths": {
+		"/BAC/safe/info": {
+			"get": {
+				"tags": [
+					"bac"
+				],
+				"summary": "safe：只允许查询自己信息",
+				"operationId": "safeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "name",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/BAC/user": {
+			"get": {
+				"tags": [
+					"bac"
+				],
+				"summary": "Test out bound",
+				"operationId": "TestBoundUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "userId",
+						"in": "query",
+						"description": "userId",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/BAC/vul/info": {
+			"get": {
+				"tags": [
+					"bac"
+				],
+				"summary": "vul：根据name查询用户信息",
+				"operationId": "vulUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "query",
+						"description": "name",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/CORS/safe": {
+			"get": {
+				"tags": [
+					"cors"
+				],
+				"summary": "safe：白名单判断Origin",
+				"operationId": "corsSafeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/CORS/vul": {
+			"get": {
+				"tags": [
+					"cors"
+				],
+				"summary": "corsVul",
+				"operationId": "corsVulUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/XMLDecoder/safe": {
+			"get": {
+				"tags": [
+					"xml-decoder-vul"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingGET_12",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/XMLDecoder/vul": {
+			"get": {
+				"tags": [
+					"xml-decoder-vul"
+				],
+				"summary": "vul: XMLDecoder反序列化",
+				"description": "XMLDecoder类的readObject()方法执行反序列化操作",
+				"operationId": "vulUsingGET_15",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/readObject/safe": {
+			"get": {
+				"tags": [
+					"deserialization"
+				],
+				"summary": "safe：反序列化类白/黑名单控制",
+				"description": "Apache Commons IO的ValidatingObjectInputStream来校验反序列化的类",
+				"operationId": "safeUsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "base64",
+						"in": "query",
+						"description": "base64",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/readObject/safe2": {
+			"get": {
+				"tags": [
+					"deserialization"
+				],
+				"summary": "readUnshared",
+				"operationId": "readUnsharedUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "base64",
+						"in": "query",
+						"description": "base64",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/readObject/vul": {
+			"get": {
+				"tags": [
+					"deserialization"
+				],
+				"summary": "vul：readObject反序列化",
+				"operationId": "readObjectUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "base64",
+						"in": "query",
+						"description": "base64",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"deserialization"
+				],
+				"summary": "vul：readObject反序列化",
+				"operationId": "readObjectUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "base64",
+						"in": "query",
+						"description": "base64",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/rmi": {
+			"get": {
+				"tags": [
+					"registry-vul"
+				],
+				"summary": "vul：Java RMI Registry 反序列化漏洞",
+				"description": "<=jdk8u111",
+				"operationId": "rmiUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"registry-vul"
+				],
+				"summary": "vul：Java RMI Registry 反序列化漏洞",
+				"description": "<=jdk8u111",
+				"operationId": "rmiUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/yaml/safe": {
+			"post": {
+				"tags": [
+					"yaml-vul"
+				],
+				"summary": "safe：SnakeYaml",
+				"operationId": "safeUsingPOST_3",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Deserialize/yaml/vul": {
+			"post": {
+				"tags": [
+					"yaml-vul"
+				],
+				"summary": "vul：SnakeYaml 反序列化漏洞",
+				"operationId": "vulUsingPOST_6",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/DoS/redos/safe": {
+			"get": {
+				"tags": [
+					"do-s"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/DoS/redos/vul": {
+			"get": {
+				"tags": [
+					"do-s"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Fastjson/vul": {
+			"post": {
+				"tags": [
+					"fastjson-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/IDOR/safe/admin": {
+			"get": {
+				"tags": [
+					"idor-2"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingGET_5",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/IDOR/safe/info": {
+			"get": {
+				"tags": [
+					"idor-1"
+				],
+				"summary": "safe：只允许查询自己信息",
+				"operationId": "safeUsingGET_4",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "name",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/IDOR/vul/admin": {
+			"get": {
+				"tags": [
+					"idor-2"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_5",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/IDOR/vul/info": {
+			"get": {
+				"tags": [
+					"idor-1"
+				],
+				"summary": "vul：根据name查询用户信息",
+				"operationId": "vulUsingGET_3",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "query",
+						"description": "name",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/IDOR/vul/qid": {
+			"get": {
+				"tags": [
+					"idor-1"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_4",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/JNDI/safe1": {
+			"get": {
+				"tags": [
+					"jndi-inject"
+				],
+				"summary": "safe：正则拦截",
+				"operationId": "safeUsingGET_6",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/JNDI/safe2": {
+			"get": {
+				"tags": [
+					"jndi-inject"
+				],
+				"summary": "safe：白名单拦截",
+				"operationId": "safe2UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/JNDI/vul": {
+			"get": {
+				"tags": [
+					"jndi-inject"
+				],
+				"summary": "vul：JNDI注入",
+				"operationId": "vulUsingGET_7",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/JWT/getName": {
+			"get": {
+				"tags": [
+					"jwt"
+				],
+				"summary": "getNickname",
+				"operationId": "getNicknameUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "jwt_cookie",
+						"description": "jwt_cookie",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Jackson/vul": {
+			"get": {
+				"tags": [
+					"jackson-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_6",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"jackson-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingPOST_1",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Log4j/vul": {
+			"post": {
+				"tags": [
+					"log-4j-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingPOST_2",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "q",
+						"in": "query",
+						"description": "q",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/Groovy/safe": {
+			"get": {
+				"tags": [
+					"groovy-vul"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingGET_3",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/Groovy/vul": {
+			"get": {
+				"tags": [
+					"groovy-vul"
+				],
+				"summary": "vul：代码注入 - Groovy类",
+				"operationId": "vulUsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/ProcessBuilder/safe": {
+			"get": {
+				"tags": [
+					"process-builder-vul"
+				],
+				"summary": "safe: 过滤特殊字符",
+				"operationId": "processbuilderSafeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "filepath",
+						"in": "query",
+						"description": "filepath",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/ProcessBuilder/vul": {
+			"get": {
+				"tags": [
+					"process-builder-vul"
+				],
+				"summary": "vul：命令执行 - ProcessBuilder",
+				"description": "调用ProcessBuilder执行ls命令，接收参数filepath，拼接命令语句",
+				"operationId": "processbuilderVulUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "filepath",
+						"in": "query",
+						"description": "filepath",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"process-builder-vul"
+				],
+				"summary": "vul：命令执行 - ProcessBuilder",
+				"description": "调用ProcessBuilder执行ls命令，接收参数filepath，拼接命令语句",
+				"operationId": "processbuilderVulUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/ProcessImpl/vul": {
+			"get": {
+				"tags": [
+					"process-impl-vul"
+				],
+				"summary": "vul：命令执行 - ProcessImpl",
+				"description": "ProcessImpl是更为底层的实现，Runtime和ProcessBuilder执行命令实际上也是调用了ProcessImpl这个类",
+				"operationId": "vulUsingGET_8",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/Runtime/safe": {
+			"get": {
+				"tags": [
+					"runtime-vul"
+				],
+				"summary": "safe: 白名单方式",
+				"operationId": "safeUsingGET_8",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"runtime-vul"
+				],
+				"summary": "safe: 白名单方式",
+				"operationId": "safeUsingPOST_1",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/Runtime/vul": {
+			"get": {
+				"tags": [
+					"runtime-vul"
+				],
+				"summary": "vul：命令执行 - Runtime.getRuntime().exec()",
+				"operationId": "vulUsingGET_10",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"runtime-vul"
+				],
+				"summary": "vul：命令执行 - Runtime.getRuntime().exec()",
+				"operationId": "vulUsingPOST_4",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/Runtime/vul2": {
+			"get": {
+				"tags": [
+					"runtime-vul"
+				],
+				"summary": "vul：Runtime.getRuntime().load()",
+				"operationId": "vul2UsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "query",
+						"description": "cmd",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/RCE/ScriptEngine/vul": {
+			"get": {
+				"tags": [
+					"load-js-vul"
+				],
+				"summary": "vul：代码注入 - 脚本引擎",
+				"description": "调用远程js脚本程序进行封装",
+				"operationId": "jsEngineUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Redirect/safe": {
+			"get": {
+				"tags": [
+					"redirect"
+				],
+				"summary": "safe: 白名单模式",
+				"operationId": "safeUsingGET_7",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Redirect/vul": {
+			"get": {
+				"tags": [
+					"redirect"
+				],
+				"summary": "vul: Spring Redirect",
+				"operationId": "vulUsingGET_9",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Redirect/vul2": {
+			"get": {
+				"tags": [
+					"redirect"
+				],
+				"summary": "vul: Servlet Redirect",
+				"operationId": "vul2UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ModelAndView"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Redirect/vul3": {
+			"get": {
+				"tags": [
+					"redirect"
+				],
+				"summary": "vul: response.sendRedirect",
+				"operationId": "vul3UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SPEL/safe": {
+			"get": {
+				"tags": [
+					"sp-el"
+				],
+				"summary": "spelSafe",
+				"operationId": "spelSafeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "ex",
+						"in": "query",
+						"description": "ex",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SPEL/vul": {
+			"get": {
+				"tags": [
+					"sp-el"
+				],
+				"summary": "vul1",
+				"operationId": "vul1UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "ex",
+						"in": "query",
+						"description": "ex",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SPEL/vul2": {
+			"get": {
+				"tags": [
+					"sp-el"
+				],
+				"summary": "vul2",
+				"operationId": "vul2UsingGET_3",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "ex",
+						"in": "query",
+						"description": "ex",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/safe1": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "safe：JDBC预编译",
+				"description": "采用预编译的方法，使用?占位，也叫参数化的SQL",
+				"operationId": "safe1UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/safe2": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "safe：采用黑名单过滤的方式",
+				"operationId": "safe2UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/safe3": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "safe：采用ESAPI过滤",
+				"operationId": "safe3UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/safe4": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "safe：强制数据类型",
+				"operationId": "safe4UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/vul1": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "vul: JDBC语句拼接",
+				"operationId": "vul1UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/vul2": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "vul：JDBC预编译拼接",
+				"description": "采用预编译的方法，但没使用?占位，此时进行预编译也无法阻止SQL注入",
+				"operationId": "vul2UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/JDBC/vul3": {
+			"get": {
+				"tags": [
+					"jdbc"
+				],
+				"summary": "vul：JdbcTemplate",
+				"description": "JDBCTemplate是Spring对JDBC的封装，使其更易于使用",
+				"operationId": "vul3UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "id",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/safe/id/{id}": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "safe：Mybatis使用${}，但写死Int类型，无法注入",
+				"operationId": "queryByIdUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/safe/list": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "safe：Mybatis 查询所有用户",
+				"operationId": "listUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/safe/order": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "safe：Mybatis order by 做映射",
+				"operationId": "orderBySafeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "field",
+						"in": "query",
+						"description": "field",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/safe/query": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "safe：Mybatis使用 #{}",
+				"operationId": "queryByUserUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "user",
+						"in": "query",
+						"description": "user",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/vul/id/{id}": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "vul：Mybatis使用${}查询1",
+				"operationId": "queryByIdUsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/vul/order": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "vul：Mybatis order by 注入（xml方式）",
+				"description": "#{} 会将对象转成字符串，形成 order by \"user\" desc 造成错误(无法正常排序)，因此很多研发会采用${}来解决，从而造成SQL注入",
+				"operationId": "orderByUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "field",
+						"in": "query",
+						"description": "field",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/vul/order2": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "vul：Mybatis order by 注入（注解方式）",
+				"operationId": "order2UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "field",
+						"in": "query",
+						"description": "field",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SQLI/MyBatis/vul/search": {
+			"get": {
+				"tags": [
+					"my-batis"
+				],
+				"summary": "vul：Mybatis使用${}查询2",
+				"operationId": "searchUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "q",
+						"in": "query",
+						"description": "q",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSRF/HTTPURLConnection/safe": {
+			"get": {
+				"tags": [
+					"ssrf"
+				],
+				"summary": "safe：过滤方式",
+				"operationId": "HTTPURLConnectionUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSRF/URLConnection/safe": {
+			"get": {
+				"tags": [
+					"ssrf"
+				],
+				"summary": "safe：白名单方式",
+				"operationId": "URLConnection3UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSRF/URLConnection/vul": {
+			"get": {
+				"tags": [
+					"ssrf"
+				],
+				"summary": "vul：HTTPURLConnection类",
+				"operationId": "URLConnectionUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSRF/URLConnection/vul2": {
+			"get": {
+				"tags": [
+					"ssrf"
+				],
+				"summary": "vul：绕过",
+				"operationId": "URLConnection2UsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "url",
+						"in": "query",
+						"description": "url",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSTI/doc/safe/{document}": {
+			"get": {
+				"tags": [
+					"ssti"
+				],
+				"summary": "safe",
+				"description": "由于controller的参数被设置为HttpServletResponse，Spring认为它已经处理了HTTP Response，因此不会发生视图名称解析",
+				"operationId": "getDocumentUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "document",
+						"in": "path",
+						"description": "document",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSTI/doc/vul/{document}": {
+			"get": {
+				"tags": [
+					"ssti"
+				],
+				"summary": "vul：url作为视图名",
+				"operationId": "getDocumentUsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "document",
+						"in": "path",
+						"description": "document",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSTI/thymeleaf/safe": {
+			"get": {
+				"tags": [
+					"ssti"
+				],
+				"summary": "safe：thymeleaf白名单",
+				"operationId": "thymeleafSafeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "lang",
+						"in": "query",
+						"description": "lang",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/SSTI/thymeleaf/vul": {
+			"get": {
+				"tags": [
+					"ssti"
+				],
+				"summary": "vul：thymeleaf模版注入",
+				"operationId": "thymeleafVulUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "lang",
+						"in": "query",
+						"description": "lang",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Shiro/getKey": {
+			"get": {
+				"tags": [
+					"shiro-vul"
+				],
+				"summary": "getShiroKey",
+				"operationId": "getShiroKeyUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"shiro-vul"
+				],
+				"summary": "getShiroKey",
+				"operationId": "getShiroKeyUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Traversal/download": {
+			"get": {
+				"tags": [
+					"traversal"
+				],
+				"summary": "vul：任意文件下载",
+				"operationId": "downloadUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "filename",
+						"in": "query",
+						"description": "filename",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Traversal/download/safe": {
+			"get": {
+				"tags": [
+					"traversal"
+				],
+				"summary": "safe：过滤../",
+				"operationId": "safeUsingGET_9",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "filename",
+						"in": "query",
+						"description": "filename",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Traversal/list": {
+			"get": {
+				"tags": [
+					"traversal"
+				],
+				"summary": "vul：任意路径遍历",
+				"operationId": "fileListUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "filename",
+						"in": "query",
+						"description": "filename",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/UPLOAD/upload": {
+			"get": {
+				"tags": [
+					"upload"
+				],
+				"summary": "uploadStatus",
+				"operationId": "uploadStatusUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/UPLOAD/uploadSafe": {
+			"post": {
+				"tags": [
+					"upload"
+				],
+				"summary": "safe：白名单后缀名处理",
+				"operationId": "singleFileUploadSafeUsingPOST",
+				"consumes": [
+					"multipart/form-data"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "file",
+						"in": "formData",
+						"description": "file",
+						"required": true,
+						"type": "file"
+					},
+					{
+						"name": "flashAttributes",
+						"in": "query",
+						"required": false,
+						"type": "object"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/UPLOAD/uploadVul": {
+			"post": {
+				"tags": [
+					"upload"
+				],
+				"summary": "vul：上传任意文件",
+				"operationId": "singleFileUploadUsingPOST",
+				"consumes": [
+					"multipart/form-data"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "file",
+						"in": "formData",
+						"description": "file",
+						"required": true,
+						"type": "file"
+					},
+					{
+						"name": "flashAttributes",
+						"in": "query",
+						"required": false,
+						"type": "object"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/Unauth/api/info": {
+			"get": {
+				"tags": [
+					"unauth"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_11",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XFF/proxy": {
+			"get": {
+				"tags": [
+					"xff"
+				],
+				"summary": "ip",
+				"operationId": "ipUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xff"
+				],
+				"summary": "ip",
+				"operationId": "ipUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XFF/remote": {
+			"get": {
+				"tags": [
+					"xff"
+				],
+				"summary": "remote",
+				"operationId": "remoteUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XFF/vul": {
+			"get": {
+				"tags": [
+					"xff"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_14",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XPath/safe": {
+			"get": {
+				"tags": [
+					"x-path-injection"
+				],
+				"summary": "safe: xpath 转义",
+				"operationId": "safeUsingGET_10",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "password",
+						"in": "query",
+						"description": "password",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "username",
+						"in": "query",
+						"description": "username",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XPath/vul": {
+			"get": {
+				"tags": [
+					"x-path-injection"
+				],
+				"summary": "vul: xpath 注入",
+				"operationId": "vulUsingGET_12",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "password",
+						"in": "query",
+						"description": "password",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "username",
+						"in": "query",
+						"description": "username",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/esapi": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "safe: ESAPI",
+				"description": "采用ESAPI过滤",
+				"operationId": "safe4UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/escape": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "safe: 采用实体编码",
+				"description": "采用自带函数HtmlUtils.htmlEscape()来过滤",
+				"operationId": "safe1UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/filter": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "safe: 过滤特殊字符",
+				"description": "做filterXss方法, 基于转义的方式",
+				"operationId": "safe2UsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/reflect": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "vul: 反射型XSS",
+				"operationId": "vul1UsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/vul2": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "vul: 反射型XSS2",
+				"operationId": "vul2UsingGET_4",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XSS/whitelist": {
+			"get": {
+				"tags": [
+					"xss"
+				],
+				"summary": "safe: 富文本过滤",
+				"description": "采用Jsoup做富文本过滤",
+				"operationId": "safe3UsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XStream/safe": {
+			"get": {
+				"tags": [
+					"x-stream-vul"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingGET_11",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"x-stream-vul"
+				],
+				"summary": "safe",
+				"operationId": "safeUsingPOST_2",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XStream/vul": {
+			"get": {
+				"tags": [
+					"x-stream-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingGET_13",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"x-stream-vul"
+				],
+				"summary": "vul",
+				"operationId": "vulUsingPOST_5",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/DocumentBuilder": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：DocumentBuilder类",
+				"operationId": "DocumentBuilderUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：DocumentBuilder类",
+				"operationId": "DocumentBuilderUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/SAXBuilder": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXBuilder",
+				"description": "是一个JDOM解析器，能将路径中的XML文件解析为Document对象",
+				"operationId": "SAXBuilderUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXBuilder",
+				"description": "是一个JDOM解析器，能将路径中的XML文件解析为Document对象",
+				"operationId": "SAXBuilderUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/SAXParser": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXParser",
+				"operationId": "SAXParserUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXParser",
+				"operationId": "SAXParserUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/SAXReader": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXReader",
+				"operationId": "SAXReaderUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：SAXReader",
+				"operationId": "SAXReaderUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/XMLReader": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：XMLReader",
+				"operationId": "XMLReaderUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：XMLReader",
+				"operationId": "XMLReaderUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/safe": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "safe：检测是否包含ENTITY外部实体",
+				"operationId": "checkUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "safe：检测是否包含ENTITY外部实体",
+				"operationId": "checkUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "content",
+						"in": "query",
+						"description": "content",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/unmarshaller": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：Unmarshaller",
+				"operationId": "UnmarshallerUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：Unmarshaller",
+				"operationId": "UnmarshallerUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "content",
+						"description": "content",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/XXE/xmlbeam": {
+			"get": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：xmlbeam",
+				"operationId": "handleCustomerUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "customer",
+						"description": "customer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Customer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"xxe"
+				],
+				"summary": "vul：xmlbeam",
+				"operationId": "handleCustomerUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "customer",
+						"description": "customer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Customer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/admin/info": {
+			"get": {
+				"tags": [
+					"admin"
+				],
+				"summary": "查询系统基本信息",
+				"operationId": "sysInfoUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/captcha": {
+			"get": {
+				"tags": [
+					"login"
+				],
+				"summary": "验证码",
+				"operationId": "captchaUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/user/login": {
+			"get": {
+				"tags": [
+					"login"
+				],
+				"summary": "登录",
+				"operationId": "loginUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "captcha",
+						"in": "query",
+						"description": "captcha",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "password",
+						"in": "query",
+						"description": "password",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "username",
+						"in": "query",
+						"description": "username",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"login"
+				],
+				"summary": "登录",
+				"operationId": "loginUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "captcha",
+						"in": "query",
+						"description": "captcha",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "password",
+						"in": "query",
+						"description": "password",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "username",
+						"in": "query",
+						"description": "username",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/user/logout": {
+			"get": {
+				"tags": [
+					"login"
+				],
+				"summary": "注销",
+				"operationId": "logoutUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "creationTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "lastAccessedTime",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name": "maxInactiveInterval",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "new",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.classLoader",
+						"in": "query",
+						"required": false,
+						"type": "ref"
+					},
+					{
+						"name": "servletContext.contextPath",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.defaultSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.effectiveMajorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveMinorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.effectiveSessionTrackingModes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"COOKIE",
+								"URL",
+								"SSL"
+							]
+						},
+						"collectionFormat": "multi",
+						"enum": [
+							"COOKIE",
+							"URL",
+							"SSL"
+						]
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].buffer",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].defaultContentType",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].deferredSyntaxAllowedAsLiteral",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].elIgnored",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].errorOnUndeclaredNamespace",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includeCodas",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].includePreludes",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].isXml",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].pageEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].scriptingInvalid",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].trimDirectiveWhitespaces",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.jspPropertyGroups[0].urlPatterns",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibLocation",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.jspConfigDescriptor.taglibs[0].taglibURI",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.majorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.minorVersion",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.requestCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.responseCharacterEncoding",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.serverInfo",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.servletContextName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.comment",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.domain",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.httpOnly",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.maxAge",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.name",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.path",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "servletContext.sessionCookieConfig.secure",
+						"in": "query",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "servletContext.sessionTimeout",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "servletContext.virtualServerName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "valueNames",
+						"in": "query",
+						"required": false,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"Customer": {
+			"type": "object",
+			"properties": {
+				"firstname": {
+					"type": "string"
+				},
+				"lastname": {
+					"type": "string"
+				}
+			},
+			"title": "Customer"
+		},
+		"ModelAndView": {
+			"type": "object",
+			"properties": {
+				"empty": {
+					"type": "boolean"
+				},
+				"model": {
+					"type": "object"
+				},
+				"modelMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "object"
+					}
+				},
+				"reference": {
+					"type": "boolean"
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"100 CONTINUE",
+						"101 SWITCHING_PROTOCOLS",
+						"102 PROCESSING",
+						"103 CHECKPOINT",
+						"200 OK",
+						"201 CREATED",
+						"202 ACCEPTED",
+						"203 NON_AUTHORITATIVE_INFORMATION",
+						"204 NO_CONTENT",
+						"205 RESET_CONTENT",
+						"206 PARTIAL_CONTENT",
+						"207 MULTI_STATUS",
+						"208 ALREADY_REPORTED",
+						"226 IM_USED",
+						"300 MULTIPLE_CHOICES",
+						"301 MOVED_PERMANENTLY",
+						"302 FOUND",
+						"302 MOVED_TEMPORARILY",
+						"303 SEE_OTHER",
+						"304 NOT_MODIFIED",
+						"305 USE_PROXY",
+						"307 TEMPORARY_REDIRECT",
+						"308 PERMANENT_REDIRECT",
+						"400 BAD_REQUEST",
+						"401 UNAUTHORIZED",
+						"402 PAYMENT_REQUIRED",
+						"403 FORBIDDEN",
+						"404 NOT_FOUND",
+						"405 METHOD_NOT_ALLOWED",
+						"406 NOT_ACCEPTABLE",
+						"407 PROXY_AUTHENTICATION_REQUIRED",
+						"408 REQUEST_TIMEOUT",
+						"409 CONFLICT",
+						"410 GONE",
+						"411 LENGTH_REQUIRED",
+						"412 PRECONDITION_FAILED",
+						"413 PAYLOAD_TOO_LARGE",
+						"413 REQUEST_ENTITY_TOO_LARGE",
+						"414 URI_TOO_LONG",
+						"414 REQUEST_URI_TOO_LONG",
+						"415 UNSUPPORTED_MEDIA_TYPE",
+						"416 REQUESTED_RANGE_NOT_SATISFIABLE",
+						"417 EXPECTATION_FAILED",
+						"418 I_AM_A_TEAPOT",
+						"419 INSUFFICIENT_SPACE_ON_RESOURCE",
+						"420 METHOD_FAILURE",
+						"421 DESTINATION_LOCKED",
+						"422 UNPROCESSABLE_ENTITY",
+						"423 LOCKED",
+						"424 FAILED_DEPENDENCY",
+						"425 TOO_EARLY",
+						"426 UPGRADE_REQUIRED",
+						"428 PRECONDITION_REQUIRED",
+						"429 TOO_MANY_REQUESTS",
+						"431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+						"451 UNAVAILABLE_FOR_LEGAL_REASONS",
+						"500 INTERNAL_SERVER_ERROR",
+						"501 NOT_IMPLEMENTED",
+						"502 BAD_GATEWAY",
+						"503 SERVICE_UNAVAILABLE",
+						"504 GATEWAY_TIMEOUT",
+						"505 HTTP_VERSION_NOT_SUPPORTED",
+						"506 VARIANT_ALSO_NEGOTIATES",
+						"507 INSUFFICIENT_STORAGE",
+						"508 LOOP_DETECTED",
+						"509 BANDWIDTH_LIMIT_EXCEEDED",
+						"510 NOT_EXTENDED",
+						"511 NETWORK_AUTHENTICATION_REQUIRED"
+					]
+				},
+				"view": {
+					"$ref": "#/definitions/View"
+				},
+				"viewName": {
+					"type": "string"
+				}
+			},
+			"title": "ModelAndView"
+		},
+		"User": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pass": {
+					"type": "string"
+				},
+				"user": {
+					"type": "string"
+				}
+			},
+			"title": "User"
+		},
+		"View": {
+			"type": "object",
+			"properties": {
+				"contentType": {
+					"type": "string"
+				}
+			},
+			"title": "View"
+		}
+	}
+}

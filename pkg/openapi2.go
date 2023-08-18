@@ -58,6 +58,10 @@ func (v2 *Openapi2) GetOpenapi2(ctx context.Context) (*openapi2.T, error) {
 		o2.Paths = newPaths
 	}
 
+	if len(o2.Consumes) > 0 && strings.HasPrefix(o2.Consumes[0], "application/json") {
+
+	}
+
 	return o2, nil
 }
 
