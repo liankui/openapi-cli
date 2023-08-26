@@ -1,0 +1,146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a API doc for Parameter Test.",
+    "version": "1.0.0",
+    "title": "Parameter Test API"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "paths": {
+    "/event/list1": {
+      "post": {
+        "summary": "邮件OA审批数量",
+        "operationId": "getOaApproveMailListUsingPOST",
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "showType",
+            "in": "query",
+            "description": "显示类型",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "monitorId",
+            "in": "query",
+            "description": "检测器ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Auth-Token",
+            "in": "header",
+            "description": "认证Auth-Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Example"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/event/list2": {
+      "post": {
+        "summary": "邮件OA审批数量",
+        "operationId": "getOaApproveMailListUsingPOST",
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "showType",
+            "in": "query",
+            "description": "显示类型",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "monitorId",
+            "in": "query",
+            "description": "检测器ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Auth-Token",
+            "in": "header",
+            "description": "认证Auth-Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Example2"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Example": {
+      "type": "object",
+      "properties": {
+        "exampleProperty": {
+          "type": "string"
+        },
+        "cycle2": {
+          "$ref": "#/definitions/Example2"
+        }
+      }
+    },
+    "Example2": {
+      "type": "object",
+      "properties": {
+        "exampleProperty": {
+          "type": "string"
+        },
+        "cycle1": {
+          "$ref": "#/definitions/Example"
+        }
+      }
+    }
+  }
+}

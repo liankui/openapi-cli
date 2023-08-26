@@ -21,16 +21,10 @@ var (
 	}
 )
 
-type LintConfig struct {
-	InputFile string `json:"input_file"`
-}
-
-type Lint struct {
-	config *LintConfig
-}
+type Lint struct{}
 
 func NewLint() *Lint {
-	return &Lint{config: &LintConfig{}}
+	return &Lint{}
 }
 
 func (l *Lint) Action(c *cli.Context) error {
@@ -41,7 +35,11 @@ func (l *Lint) Action(c *cli.Context) error {
 		return nil
 	}
 
-	lintResult := OpenapiLint(c.Context, spec)
+	lintResult, err := OpenapiLint(c.Context, spec)
+	if err != nil {
+		logs.Warnw("[Action] openapi lint error", "error", err)
+		return nil
+	}
 
 	for _, o := range lintResult.Operations {
 		if !o.Valid {
@@ -54,7 +52,7 @@ func (l *Lint) Action(c *cli.Context) error {
 	return nil
 }
 
-func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
+func OpenapiLint(ctx context.Context, spec []byte) (*LintResult, error) {
 	result := motor.ApplyRulesToRuleSet(&motor.RuleSetExecution{
 		RuleSet:         LintRules,
 		Spec:            spec,
@@ -62,7 +60,11 @@ func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
 	})
 
 	if result.Index == nil {
-		return &LintResult{Valid: false}
+		return &LintResult{Valid: false}, nil
+	}
+
+	if len(result.Errors) > 0 {
+		return &LintResult{Valid: false}, logs.NewErrorw("apply rule get errors", "errors", result.Errors)
 	}
 
 	operations := result.Index.GetAllPaths()
@@ -106,5 +108,5 @@ func OpenapiLint(ctx context.Context, spec []byte) *LintResult {
 
 	sort.Sort(LintOperationResults(lintResult.Operations))
 
-	return lintResult
+	return lintResult, nil
 }

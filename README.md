@@ -2,6 +2,9 @@
 
 openapi-cli 是一个快速检查、升级swagger/openAPI文档的小工具。
 
+// TODO p1 添加对swagger2文件的循环依赖、交叉依赖的检测
+// TODO p1 添加postman json文件转化为openapi3
+
 ## 使用方式：
 
 ```

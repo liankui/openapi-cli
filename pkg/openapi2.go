@@ -110,7 +110,11 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 func (v2 *Openapi2) RemoveInvalidOperation(ctx context.Context, o2 *openapi2.T) {
 	buffer, _ := v2.marshaler(o2)
 
-	lintResult := OpenapiLint(ctx, buffer)
+	lintResult, err := OpenapiLint(ctx, buffer)
+	if err != nil {
+		logs.Warnw("[RemoveInvalidOperation] openapi lint error", "error", err)
+		return
+	}
 	if lintResult.Valid {
 		return
 	}
