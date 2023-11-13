@@ -21,10 +21,17 @@ jobs:
       - name: Install dependencies
         run: go get ./...
 
+      - name: echo1
+        run: ls -lh
+
       - name: Build
         run: go build -C ./cmd/openapi-cli -ldflags '-w -s'
 
-      - uses: actions/checkout@v3
+      - name: echo2
+        run: ls -lh
+
+      - name: echo3
+        run: echo "ls -lh ./cmd/openapi-cli"
 
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag openapi-cli:$(date +%s)
