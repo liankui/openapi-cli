@@ -7,14 +7,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
-      - name: echo
-        run: ls && go version
+      - uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20.x'
+
+      - name: Install dependencies
+        run: go get ./...
+
+      - name: Build
+        run: go build -C ./cmd/openapi-cli -ldflags '-w -s'
+
       - uses: actions/checkout@v3
+
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag openapi-cli:$(date +%s)

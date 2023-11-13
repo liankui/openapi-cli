@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 version=$(cat version)
-GOOSs=(darwin linux windows)
-GOARCHs=(amd64 arm64)
+GOOSs=(darwin )
+GOARCHs=( arm64)
 
 set -ex
 for os in "${GOOSs[@]}"; do
