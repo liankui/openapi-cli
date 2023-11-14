@@ -90,14 +90,14 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 			return nil, err
 		}
 
-		newfp := strings.TrimSuffix(v2.Filename, ".json") + "-" + strconv.FormatInt(time.Now().UnixMilli(), 10) + ".json"
-		err = os.WriteFile(newfp, buffer, os.ModePerm)
+		newFile := strings.TrimSuffix(v2.Filename, ".json") + "-" + strconv.FormatInt(time.Now().UnixMilli(), 10) + ".json"
+		err = os.WriteFile(newFile, buffer, os.ModePerm)
 		if err != nil {
 			logs.Warnw("failed to write upgraded api", "error", err)
 			return nil, err
 		}
 
-		logs.Infow("api upgrade successfully", "file", newfp, "version", v3.OpenAPI, "duration", time.Since(start).String())
+		logs.Infow("successfully", "newFile", newFile, "duration", time.Since(start).String())
 
 		return v3, nil
 	}

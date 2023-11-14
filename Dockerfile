@@ -11,4 +11,4 @@ FROM alpine:3.18.4
 
 COPY --from=builder /build/openapi-cli openapi-cli
 
-CMD ["/openapi-cli v"]
+CMD ["/openapi-cli"]

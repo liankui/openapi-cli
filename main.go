@@ -2,8 +2,8 @@ package main
 
 import (
 	_ "embed"
-	"fmt"
 	"os"
+	"strings"
 
 	"github.com/chaos-io/chaos/core/logs"
 	"github.com/urfave/cli/v2"
@@ -16,16 +16,17 @@ var version string
 
 func main() {
 	app := cli.App{
-		Name:                   "openapi-cli",
-		Usage:                  "openapi command line is a small utility for parsing and validating openapi(swagger) document",
-		UsageText:              "openapi-cli [command] [command options] [arguments...]",
-		EnableBashCompletion:   true,
-		UseShortOptionHandling: true,
+		Name:            "openapi-cli",
+		Usage:           "openapi command line is a small utility for parsing and validating openapi(swagger) document",
+		UsageText:       "openapi-cli [command] file/directory",
+		HideHelp:        true,
+		HideHelpCommand: false,
+		Version:         strings.TrimSpace(version),
 		Commands: []*cli.Command{
 			{
 				Name:    "lint",
 				Aliases: []string{"l"},
-				Usage:   "lint swagger/openapi document",
+				Usage:   "lint swagger/openapi",
 				Action:  pkg.NewLint().Action,
 			},
 			{
@@ -33,15 +34,6 @@ func main() {
 				Aliases: []string{"u"},
 				Usage:   "upgrade swagger2 to openapi3",
 				Action:  pkg.NewUpgrade().Action,
-			},
-			{
-				Name:    "version",
-				Aliases: []string{"v"},
-				Usage:   "Show version",
-				Action: func(ctx *cli.Context) error {
-					fmt.Print(version)
-					return nil
-				},
 			},
 		},
 	}
