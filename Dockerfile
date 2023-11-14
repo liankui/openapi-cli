@@ -5,7 +5,7 @@ ENV GOPROXY=https://goproxy.cn,direct
 
 COPY . .
 RUN go mod download
-RUN go build -ldflags '-w -s' -o openapi-cli ./cmd/openapi-cli
+RUN go build -ldflags '-w -s' -o openapi-cli
 
 FROM alpine:3.18.4
 
