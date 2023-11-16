@@ -21,7 +21,7 @@ help, h     Shows a list of commands or help for one command
 ### 基础命令
 
 1. lint <filename>，检查openAPI中有问题的语法错误；
-    ```
+    ```œ
    $ ./openapi-cli-v0.2.3-darwin-amd64 lint testdata/swagger2-wrong.json
    2023-06-19T17:15:06.591+0800    info    pkg/lint.go:37  api lint        {"file": "testdata/swagger2-wrong.json"}
    2023-06-19T17:15:06.611+0800    info    pkg/lint.go:48  violation       {"result": {"valid":false,"path":"/policy/classifySample/getList","method":"post","startLine":26,"endLine":31,"description":"Operation parameters are unique and non-repeating.","howToFix":"Make sure that all the operation parameters are unique and non-repeating, don't duplicate names, don'tre-use parameter names in the same operation."}}
