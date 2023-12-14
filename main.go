@@ -2,10 +2,10 @@ package main
 
 import (
 	_ "embed"
+	"log/slog"
 	"os"
 	"strings"
 
-	"github.com/chaos-io/chaos/core/logs"
 	"github.com/urfave/cli/v2"
 
 	"github.com/liankui/openapi-cli/pkg"
@@ -40,7 +40,7 @@ func main() {
 
 	err := app.Run(os.Args)
 	if err != nil {
-		logs.Error(err)
+		slog.Error("failed to run app", "error", err)
 		return
 	}
 }

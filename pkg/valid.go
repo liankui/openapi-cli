@@ -1,10 +1,10 @@
 package pkg
 
 import (
+	"log/slog"
 	"os"
 	"strings"
 
-	"github.com/chaos-io/chaos/core/logs"
 	"github.com/getkin/kin-openapi/openapi2"
 	"github.com/getkin/kin-openapi/openapi3"
 	"gopkg.in/yaml.v3"
@@ -23,13 +23,13 @@ var OpenapiVersion string
 func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 	data, err := os.ReadFile(filename)
 	if err != nil {
-		logs.Warn(err)
+		slog.Warn("failed to read file", "file", filename, "error", err)
 		return false
 	}
 
 	_, unmarshaller, err := GetMarshaller(filename)
 	if err != nil {
-		logs.Warnw("failed to get marshaler", "error", err)
+		slog.Warn("failed to get marshaler", "error", err)
 		return false
 	}
 
@@ -38,7 +38,7 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		Swagger string `json:"swagger" yaml:"swagger"`
 	}
 	if err := unmarshaller(data, &vd); err != nil {
-		logs.Warn(err)
+		slog.Warn("failed to unmarshaler", "error", err)
 		return false
 	}
 
@@ -50,7 +50,7 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 
 		doc, err := loader.LoadFromFile(filename)
 		if err != nil {
-			logs.Warnw("Loading error", "error", err)
+			slog.Warn("Loading error", "error", err)
 			return false
 		}
 
@@ -69,37 +69,37 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		}
 
 		if err = doc.Validate(loader.Context, opts...); err != nil {
-			logs.Warnw("Validation error", "error", err)
+			slog.Warn("Validation error", "error", err)
 			return false
 		}
 
 	case vd.Swagger == "2" || strings.HasPrefix(vd.Swagger, "2."):
 		OpenapiVersion = vd.Swagger
 		if defaults != defaultDefaults {
-			logs.Warn("Flag --defaults is only for OpenAPIv3")
+			slog.Warn("Flag --defaults is only for OpenAPIv3")
 			return false
 		}
 		if examples != defaultExamples {
-			logs.Warn("Flag --examples is only for OpenAPIv3")
+			slog.Warn("Flag --examples is only for OpenAPIv3")
 			return false
 		}
 		if ext != defaultExt {
-			logs.Warn("Flag --ext is only for OpenAPIv3")
+			slog.Warn("Flag --ext is only for OpenAPIv3")
 			return false
 		}
 		if patterns != defaultPatterns {
-			logs.Warn("Flag --patterns is only for OpenAPIv3")
+			slog.Warn("Flag --patterns is only for OpenAPIv3")
 			return false
 		}
 
 		var doc openapi2.T
 		if err := yaml.Unmarshal(data, &doc); err != nil {
-			logs.Warnw("Loading error", "error", err)
+			slog.Warn("Loading error", "error", err)
 			return false
 		}
 
 	default:
-		logs.Warn("Missing or incorrect 'openapi' or 'swagger' field")
+		slog.Warn("Missing or incorrect 'openapi' or 'swagger' field")
 		return false
 	}
 
@@ -109,13 +109,13 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 func Valid2(filename string) bool {
 	data, err := os.ReadFile(filename)
 	if err != nil {
-		logs.Warn(err)
+		slog.Warn("failed to read file", "file", filename, "error", err)
 		return false
 	}
 
 	_, unmarshaller, err := GetMarshaller(filename)
 	if err != nil {
-		logs.Warnw("failed to get marshaler", "error", err)
+		slog.Warn("failed to get marshaler", "error", err)
 		return false
 	}
 
@@ -124,7 +124,7 @@ func Valid2(filename string) bool {
 		Swagger string `json:"swagger" yaml:"swagger"`
 	}
 	if err := unmarshaller(data, &vd); err != nil {
-		logs.Warn(err)
+		slog.Warn("failed to get unmarshaler", "error", err)
 		return false
 	}
 
@@ -136,7 +136,7 @@ func Valid2(filename string) bool {
 		OpenapiVersion = vd.Swagger
 
 	default:
-		logs.Warn("Missing or incorrect 'openapi' or 'swagger' field")
+		slog.Warn("Missing or incorrect 'openapi' or 'swagger' field")
 		return false
 	}
 

@@ -1,10 +1,11 @@
 package pkg
 
 import (
+	"log/slog"
 	"os"
 	"path"
 
-	"github.com/chaos-io/chaos/core/logs"
+	"github.com/pkg/errors"
 	"github.com/urfave/cli/v2"
 )
 
@@ -18,19 +19,19 @@ func NewUpgrade() *Upgrade {
 func (u *Upgrade) Action(c *cli.Context) error {
 	dirFile := c.Args().First()
 	if dirFile == "" {
-		return logs.NewError("NOT specified the target file or dir")
+		return errors.New("NOT specified the target file or dir")
 	}
 
 	f, err := os.Stat(dirFile)
 	if err != nil {
-		logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
+		slog.Error("failed to read file", "error", err, "path", os.Args[1:])
 		return nil
 	}
 
 	if f.IsDir() {
 		files, err := os.ReadDir(dirFile)
 		if err != nil {
-			logs.Errorw("failed to read dir", "error", err, "path", os.Args[1])
+			slog.Error("failed to read dir", "error", err, "path", os.Args[1])
 			return err
 		}
 
@@ -39,7 +40,7 @@ func (u *Upgrade) Action(c *cli.Context) error {
 				filePath := path.Join(dirFile, file.Name())
 				openapi2 := NewOpenapi2(filePath)
 				if _, err := openapi2.UpgradeOpenAPI(c.Context); err != nil {
-					logs.Warnw("api upgrade failed", "file", filePath, "error", err)
+					slog.Warn("api upgrade failed", "file", filePath, "error", err)
 				}
 			}
 		}

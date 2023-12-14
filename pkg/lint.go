@@ -2,14 +2,15 @@ package pkg
 
 import (
 	"context"
+	"log/slog"
 	"os"
 	"sort"
 	"strings"
 
-	"github.com/chaos-io/chaos/core/logs"
 	"github.com/daveshanley/vacuum/model"
 	"github.com/daveshanley/vacuum/motor"
 	"github.com/daveshanley/vacuum/rulesets"
+	"github.com/pkg/errors"
 	"github.com/urfave/cli/v2"
 )
 
@@ -28,26 +29,27 @@ func NewLint() *Lint {
 }
 
 func (l *Lint) Action(c *cli.Context) error {
-	logs.Infow("api lint", "file", c.Args().First())
+	slog.Info("api lint", "file", c.Args().First())
+
 	spec, err := os.ReadFile(c.Args().First())
 	if err != nil {
-		logs.Errorw("failed to read file", "error", err, "path", os.Args[1:])
+		slog.Error("failed to read file", "error", err, "path", os.Args[1:])
 		return nil
 	}
 
 	lintResult, err := OpenapiLint(c.Context, spec)
 	if err != nil {
-		logs.Warnw("[Action] openapi lint error", "error", err)
+		slog.Warn("[Action] openapi lint error", "error", err)
 		return nil
 	}
 
 	for _, o := range lintResult.Operations {
 		if !o.Valid {
-			logs.Infow("violation", "result", o)
+			slog.Info("violation", "result", o)
 		}
 	}
 
-	logs.Infow("api lint finished", "file", c.Args().First())
+	slog.Info("api lint finished", "file", c.Args().First())
 
 	return nil
 }
@@ -64,7 +66,7 @@ func OpenapiLint(ctx context.Context, spec []byte) (*LintResult, error) {
 	}
 
 	if len(result.Errors) > 0 {
-		return &LintResult{Valid: false}, logs.NewErrorw("apply rule get errors", "errors", result.Errors)
+		return &LintResult{Valid: false}, errors.Errorf("apply rule get errors, errors: %v", result.Errors)
 	}
 
 	operations := result.Index.GetAllPaths()

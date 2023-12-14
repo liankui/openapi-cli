@@ -3,12 +3,12 @@ package pkg
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/chaos-io/chaos/core/logs"
 	"github.com/getkin/kin-openapi/openapi2"
 	"github.com/getkin/kin-openapi/openapi2conv"
 	"github.com/getkin/kin-openapi/openapi3"
@@ -30,13 +30,13 @@ func NewOpenapi2(filename string) *Openapi2 {
 func (v2 *Openapi2) GetOpenapi2(ctx context.Context) (*openapi2.T, error) {
 	data, err := os.ReadFile(v2.Filename)
 	if err != nil {
-		logs.Errorw("failed to read file", "error", err, "path", v2.Filename)
+		slog.Error("failed to read file", "error", err, "path", v2.Filename)
 		return nil, err
 	}
 
 	o2 := &openapi2.T{}
 	if err = v2.unmarshaler(data, &o2); err != nil {
-		logs.Warnw("failed to parse the openapi", "file", v2.Filename, "error", err)
+		slog.Warn("failed to parse the openapi", "file", v2.Filename, "error", err)
 		return nil, fmt.Errorf("failed to parse the openapi due to %v2", err.Error())
 	}
 
@@ -58,15 +58,11 @@ func (v2 *Openapi2) GetOpenapi2(ctx context.Context) (*openapi2.T, error) {
 		o2.Paths = newPaths
 	}
 
-	if len(o2.Consumes) > 0 && strings.HasPrefix(o2.Consumes[0], "application/json") {
-
-	}
-
 	return o2, nil
 }
 
 func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
-	logs.Infow("api upgrade", "file", v2.Filename)
+	slog.Info("api upgrade", "file", v2.Filename)
 	start := time.Now()
 
 	o2, err := v2.GetOpenapi2(ctx)
@@ -79,30 +75,30 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 	if OpenapiVersion == "2" || strings.HasPrefix(OpenapiVersion, "2.") {
 		v3, err := openapi2conv.ToV3(o2)
 		if err != nil {
-			logs.Warnw("failed to convert swagger2 to openapi3", "error", err)
+			slog.Warn("failed to convert swagger2 to openapi3", "error", err)
 			return nil, err
 		}
 
 		o3 := NormalizeV3(v3)
 		buffer, err := jsoniter.MarshalIndent(&o3, "", "  ")
 		if err != nil {
-			logs.Warnw("failed to marshal openapi3", "error", err)
+			slog.Warn("failed to marshal openapi3", "error", err)
 			return nil, err
 		}
 
 		newFile := strings.TrimSuffix(v2.Filename, ".json") + "-" + strconv.FormatInt(time.Now().UnixMilli(), 10) + ".json"
 		err = os.WriteFile(newFile, buffer, os.ModePerm)
 		if err != nil {
-			logs.Warnw("failed to write upgraded api", "error", err)
+			slog.Warn("failed to write upgraded api", "error", err)
 			return nil, err
 		}
 
-		logs.Infow("successfully", "newFile", newFile, "duration", time.Since(start).String())
+		slog.Info("successfully", "newFile", newFile, "duration", time.Since(start).String())
 
 		return v3, nil
 	}
 
-	logs.Infow("skip api upgrade", "openapi version", OpenapiVersion)
+	slog.Info("skip api upgrade", "openapi version", OpenapiVersion)
 
 	return nil, nil
 }
@@ -112,7 +108,7 @@ func (v2 *Openapi2) RemoveInvalidOperation(ctx context.Context, o2 *openapi2.T) 
 
 	lintResult, err := OpenapiLint(ctx, buffer)
 	if err != nil {
-		logs.Warnw("[RemoveInvalidOperation] openapi lint error", "error", err)
+		slog.Warn("[RemoveInvalidOperation] openapi lint error", "error", err)
 		return
 	}
 	if lintResult.Valid {
@@ -149,6 +145,6 @@ func (v2 *Openapi2) RemoveInvalidOperation(ctx context.Context, o2 *openapi2.T) 
 			continue
 		}
 
-		logs.Infow("delete invalid operation", "operation", operation)
+		slog.Info("delete invalid operation", "operation", operation)
 	}
 }
