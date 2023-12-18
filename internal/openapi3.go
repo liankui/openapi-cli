@@ -1,4 +1,4 @@
-package pkg
+package internal
 
 import (
 	"github.com/getkin/kin-openapi/openapi3"
@@ -17,8 +17,7 @@ type Openapi3 struct {
 	ExternalDocs *openapi3.ExternalDocs        `json:"externalDocs,omitempty" yaml:"externalDocs,omitempty"`
 }
 
-// NormalizeV3 avoid to use openapi3.T MarshalJSON
-func NormalizeV3(doc *openapi3.T) *Openapi3 {
+func NewOpenapi3(doc *openapi3.T) *Openapi3 {
 	return &Openapi3{
 		Extensions:   doc.Extensions,
 		OpenAPI:      doc.OpenAPI,

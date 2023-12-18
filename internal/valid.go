@@ -1,4 +1,4 @@
-package pkg
+package internal
 
 import (
 	"log/slog"
@@ -27,9 +27,10 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		return false
 	}
 
-	_, unmarshaller, err := GetMarshaller(filename)
+	v2 := Openapi2{Filename: filename}
+	_, unmarshaller, err := v2.GetMarshaller()
 	if err != nil {
-		slog.Warn("failed to get marshaler", "error", err)
+		slog.Warn("failed to get marshaller", "error", err)
 		return false
 	}
 
@@ -37,6 +38,7 @@ func Valid(filename string, ext, defaults, examples, patterns bool) bool {
 		OpenAPI string `json:"openapi" yaml:"openapi"`
 		Swagger string `json:"swagger" yaml:"swagger"`
 	}
+
 	if err := unmarshaller(data, &vd); err != nil {
 		slog.Warn("failed to unmarshaler", "error", err)
 		return false
@@ -113,7 +115,8 @@ func Valid2(filename string) bool {
 		return false
 	}
 
-	_, unmarshaller, err := GetMarshaller(filename)
+	v2 := Openapi2{Filename: filename}
+	_, unmarshaller, err := v2.GetMarshaller()
 	if err != nil {
 		slog.Warn("failed to get marshaler", "error", err)
 		return false
@@ -123,6 +126,7 @@ func Valid2(filename string) bool {
 		OpenAPI string `json:"openapi" yaml:"openapi"`
 		Swagger string `json:"swagger" yaml:"swagger"`
 	}
+
 	if err := unmarshaller(data, &vd); err != nil {
 		slog.Warn("failed to get unmarshaler", "error", err)
 		return false

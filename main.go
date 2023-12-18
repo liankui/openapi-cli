@@ -8,7 +8,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/liankui/openapi-cli/pkg"
+	"github.com/liankui/openapi-cli/action"
 )
 
 //go:embed version
@@ -27,13 +27,19 @@ func main() {
 				Name:    "lint",
 				Aliases: []string{"l"},
 				Usage:   "lint swagger/openapi",
-				Action:  pkg.NewLint().Action,
+				Action:  action.NewLint().Action,
 			},
 			{
 				Name:    "upgrade",
 				Aliases: []string{"u"},
 				Usage:   "upgrade swagger2 to openapi3",
-				Action:  pkg.NewUpgrade().Action,
+				Action:  action.NewUpgrade().Action,
+			},
+			{
+				Name:    "postman",
+				Aliases: []string{"p"},
+				Usage:   "convert postman json to openapi3",
+				Action:  action.NewUpgrade().Action,
 			},
 		},
 	}

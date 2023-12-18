@@ -1,33 +1,35 @@
-package pkg
+package internal
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/daveshanley/vacuum/model"
+	"github.com/daveshanley/vacuum/motor"
 	"github.com/getkin/kin-openapi/openapi2"
 	"github.com/getkin/kin-openapi/openapi2conv"
 	"github.com/getkin/kin-openapi/openapi3"
 	jsoniter "github.com/json-iterator/go"
+	"github.com/pkg/errors"
+	"gopkg.in/yaml.v3"
+
+	"github.com/liankui/openapi-cli/action"
 )
 
 type Openapi2 struct {
-	Filename    string
-	marshaler   func(v interface{}) ([]byte, error)
-	unmarshaler func(data []byte, v interface{}) error
+	Filename string
 }
 
 func NewOpenapi2(filename string) *Openapi2 {
-	o2 := &Openapi2{Filename: filename}
-	o2.marshaler, o2.unmarshaler, _ = GetMarshaller(filename)
-	return o2
+	return &Openapi2{Filename: filename}
 }
 
-func (v2 *Openapi2) GetOpenapi2(ctx context.Context) (*openapi2.T, error) {
+func (v2 *Openapi2) Normalize(ctx context.Context) (*openapi2.T, error) {
 	data, err := os.ReadFile(v2.Filename)
 	if err != nil {
 		slog.Error("failed to read file", "error", err, "path", v2.Filename)
@@ -35,9 +37,10 @@ func (v2 *Openapi2) GetOpenapi2(ctx context.Context) (*openapi2.T, error) {
 	}
 
 	o2 := &openapi2.T{}
-	if err = v2.unmarshaler(data, &o2); err != nil {
+	_, unmarshaler, _ := v2.GetMarshaller()
+	if err = unmarshaler(data, &o2); err != nil {
 		slog.Warn("failed to parse the openapi", "file", v2.Filename, "error", err)
-		return nil, fmt.Errorf("failed to parse the openapi due to %v2", err.Error())
+		return nil, errors.Errorf("failed to parse the openapi due to %v", err)
 	}
 
 	if len(o2.Schemes) == 0 {
@@ -65,7 +68,7 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 	slog.Info("api upgrade", "file", v2.Filename)
 	start := time.Now()
 
-	o2, err := v2.GetOpenapi2(ctx)
+	o2, err := v2.Normalize(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +82,7 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 			return nil, err
 		}
 
-		o3 := NormalizeV3(v3)
+		o3 := NewOpenapi3(v3)
 		buffer, err := jsoniter.MarshalIndent(&o3, "", "  ")
 		if err != nil {
 			slog.Warn("failed to marshal openapi3", "error", err)
@@ -104,9 +107,10 @@ func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
 }
 
 func (v2 *Openapi2) RemoveInvalidOperation(ctx context.Context, o2 *openapi2.T) {
-	buffer, _ := v2.marshaler(o2)
+	marshaller, _, _ := v2.GetMarshaller()
+	buffer, _ := marshaller(o2)
 
-	lintResult, err := OpenapiLint(ctx, buffer)
+	lintResult, err := v2.Lint(ctx, buffer)
 	if err != nil {
 		slog.Warn("[RemoveInvalidOperation] openapi lint error", "error", err)
 		return
@@ -147,4 +151,74 @@ func (v2 *Openapi2) RemoveInvalidOperation(ctx context.Context, o2 *openapi2.T) 
 
 		slog.Info("delete invalid operation", "operation", operation)
 	}
+}
+
+func (v2 *Openapi2) GetMarshaller() (marshaller func(v interface{}) ([]byte, error), unmarshaller func(data []byte, v interface{}) error, err error) {
+	if strings.HasSuffix(v2.Filename, ".yaml") || strings.HasSuffix(v2.Filename, ".yml") {
+		marshaller, unmarshaller = yaml.Marshal, yaml.Unmarshal
+	} else if strings.HasSuffix(v2.Filename, ".json") {
+		marshaller, unmarshaller = jsoniter.Marshal, jsoniter.Unmarshal
+	} else {
+		err = errors.Errorf("filename's type is invalid, file:%v", v2.Filename)
+	}
+	return
+}
+
+func (v2 *Openapi2) Lint(ctx context.Context, spec []byte) (*LintResult, error) {
+	result := motor.ApplyRulesToRuleSet(&motor.RuleSetExecution{
+		RuleSet:         action.LintRules,
+		Spec:            spec,
+		CustomFunctions: map[string]model.RuleFunction{},
+	})
+
+	if result.Index == nil {
+		return &LintResult{Valid: false}, nil
+	}
+
+	if len(result.Errors) > 0 {
+		return &LintResult{Valid: false}, errors.Errorf("apply rule get errors, errors: %v", result.Errors)
+	}
+
+	operations := result.Index.GetAllPaths()
+
+	lintResult := &LintResult{
+		Operations: make([]*LintOperationResult, 0, len(operations)),
+		Valid:      true,
+	}
+
+	for path, operation := range operations {
+		for method := range operation {
+			operationResult := &LintOperationResult{
+				Path:   path,
+				Method: method,
+				Valid:  true,
+			}
+
+			operationPath := strings.Join([]string{"$.paths", path, method, "parameters"}, ".")
+			for _, _result := range result.Results {
+				if _result.Path != operationPath {
+					continue
+				}
+
+				operationResult.Valid = false
+				operationResult.Description = _result.Rule.Description
+				operationResult.HowToFix = _result.Rule.HowToFix
+				if _result.StartNode != nil {
+					operationResult.StartLine = int32(_result.StartNode.Line)
+				}
+				if _result.EndNode != nil {
+					operationResult.EndLine = int32(_result.EndNode.Line)
+				}
+
+				lintResult.Valid = false
+				break
+			}
+
+			lintResult.Operations = append(lintResult.Operations, operationResult)
+		}
+	}
+
+	sort.Sort(LintOperationResults(lintResult.Operations))
+
+	return lintResult, nil
 }
