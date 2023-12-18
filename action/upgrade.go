@@ -3,7 +3,6 @@ package action
 import (
 	"log/slog"
 	"os"
-	"path"
 
 	"github.com/pkg/errors"
 	"github.com/urfave/cli/v2"
@@ -20,7 +19,7 @@ func NewUpgrade() *Upgrade {
 func (u *Upgrade) Action(c *cli.Context) error {
 	dirFile := c.Args().First()
 	if dirFile == "" {
-		return errors.New("NOT specified the target file or dir")
+		return errors.New("NOT specified the target file")
 	}
 
 	f, err := os.Stat(dirFile)
@@ -30,25 +29,12 @@ func (u *Upgrade) Action(c *cli.Context) error {
 	}
 
 	if f.IsDir() {
-		files, err := os.ReadDir(dirFile)
-		if err != nil {
-			slog.Error("failed to read dir", "error", err, "path", os.Args[1])
-			return err
-		}
-
-		for _, file := range files {
-			if !file.IsDir() && internal.Valid2(path.Join(dirFile, file.Name())) {
-				filePath := path.Join(dirFile, file.Name())
-				openapi2 := internal.NewOpenapi2(filePath)
-				if _, err := openapi2.UpgradeOpenAPI(c.Context); err != nil {
-					slog.Warn("api upgrade failed", "file", filePath, "error", err)
-				}
-			}
-		}
+		return errors.Errorf("can't support directory")
 	} else {
-		if internal.Valid2(dirFile) {
-			openapi2 := internal.NewOpenapi2(dirFile)
-			if _, err := openapi2.UpgradeOpenAPI(c.Context); err != nil {
+		v2 := internal.NewOpenapi2(f.Name())
+		if v2.Valid() {
+			if _, err := v2.Upgrade(c.Context); err != nil {
+				slog.Warn("api upgrade failed", "file", f.Name(), "error", err)
 				return err
 			}
 		}

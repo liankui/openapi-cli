@@ -29,7 +29,7 @@ func NewOpenapi2(filename string) *Openapi2 {
 	return &Openapi2{Filename: filename}
 }
 
-func (v2 *Openapi2) Normalize(ctx context.Context) (*openapi2.T, error) {
+func (v2 *Openapi2) Normalize() (*openapi2.T, error) {
 	data, err := os.ReadFile(v2.Filename)
 	if err != nil {
 		slog.Error("failed to read file", "error", err, "path", v2.Filename)
@@ -64,11 +64,11 @@ func (v2 *Openapi2) Normalize(ctx context.Context) (*openapi2.T, error) {
 	return o2, nil
 }
 
-func (v2 *Openapi2) UpgradeOpenAPI(ctx context.Context) (*openapi3.T, error) {
+func (v2 *Openapi2) Upgrade(ctx context.Context) (*openapi3.T, error) {
 	slog.Info("api upgrade", "file", v2.Filename)
 	start := time.Now()
 
-	o2, err := v2.Normalize(ctx)
+	o2, err := v2.Normalize()
 	if err != nil {
 		return nil, err
 	}
@@ -221,4 +221,35 @@ func (v2 *Openapi2) Lint(ctx context.Context, spec []byte) (*LintResult, error) 
 	sort.Sort(LintOperationResults(lintResult.Operations))
 
 	return lintResult, nil
+}
+
+func (v2 *Openapi2) Valid() bool {
+	file, err := os.ReadFile(v2.Filename)
+	if err != nil {
+		slog.Warn("failed to read file", "file", v2.Filename, "error", err)
+		return false
+	}
+
+	var vd struct {
+		OpenAPI string `json:"openapi" yaml:"openapi"`
+		Swagger string `json:"swagger" yaml:"swagger"`
+	}
+
+	_, unmarshaller, _ := v2.GetMarshaller()
+	if err := unmarshaller(file, &vd); err != nil {
+		slog.Warn("failed to get unmarshaler", "error", err)
+		return false
+	}
+
+	switch {
+	case vd.OpenAPI == "3" || strings.HasPrefix(vd.OpenAPI, "3."):
+		OpenapiVersion = vd.OpenAPI
+	case vd.Swagger == "2" || strings.HasPrefix(vd.Swagger, "2."):
+		OpenapiVersion = vd.Swagger
+	default:
+		slog.Warn("missing or incorrect 'openapi' or 'swagger' field")
+		return false
+	}
+
+	return true
 }

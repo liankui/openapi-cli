@@ -18,7 +18,7 @@ func main() {
 	app := cli.App{
 		Name:            "openapi-cli",
 		Usage:           "openapi command line is a small utility for parsing and validating openapi(swagger) document",
-		UsageText:       "openapi-cli [command] file/directory",
+		UsageText:       "openapi-cli [command] filename",
 		HideHelp:        true,
 		HideHelpCommand: false,
 		Version:         strings.TrimSpace(version),
@@ -38,8 +38,8 @@ func main() {
 			{
 				Name:    "postman",
 				Aliases: []string{"p"},
-				Usage:   "convert postman json to openapi3",
-				Action:  action.NewUpgrade().Action,
+				Usage:   "convert postman collection to openapi3",
+				Action:  action.NewPostmanCovert().Action,
 			},
 		},
 	}

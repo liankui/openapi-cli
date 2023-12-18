@@ -19,7 +19,7 @@ func TestValid2(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Valid2(tt.args.filename); got != tt.want {
+			if got := NewOpenapi2(tt.args.filename).Valid(); got != tt.want {
 				t.Errorf("Valid2() = %v, want %v", got, tt.want)
 			}
 		})
